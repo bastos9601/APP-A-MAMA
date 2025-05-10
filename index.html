@@ -90,6 +90,23 @@
       background-color: #d81b60;
     }
 
+    .frase-emocionante {
+      margin-top: 2rem;
+      background-color: #fce4ec;
+      padding: 1.5rem;
+      border-radius: 15px;
+      text-align: center;
+      font-size: 1.2rem;
+      color: #ad1457;
+      display: none;
+      animation: aparecer 0.5s ease-in-out forwards;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     .video-section {
       margin-top: 3rem;
       text-align: center;
@@ -140,65 +157,6 @@
       margin-top: 3rem;
     }
 
-    /* Modal estilo */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 10;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.5);
-    }
-
-    .modal-contenido {
-      background-color: #fff;
-      margin: 10% auto;
-      padding: 2rem;
-      border-radius: 15px;
-      width: 90%;
-      max-width: 400px;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-    }
-
-    .modal-contenido h2 {
-      color: #d6336c;
-    }
-
-    .modal-contenido input,
-    .modal-contenido textarea {
-      width: 100%;
-      padding: 0.6rem;
-      margin-top: 0.5rem;
-      margin-bottom: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-    }
-
-    .modal-contenido button {
-      background-color: #ec407a;
-      color: white;
-      border: none;
-      padding: 0.7rem 1.5rem;
-      border-radius: 30px;
-      cursor: pointer;
-      width: 100%;
-      font-weight: bold;
-    }
-
-    .cerrar {
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      color: #888;
-      cursor: pointer;
-    }
-
-    .cerrar:hover {
-      color: black;
-    }
-
     audio {
       position: fixed;
       bottom: 10px;
@@ -241,30 +199,14 @@
 <body>
 
   <audio autoplay loop controls>
-    <source src="/comotepago.mp3" type="audio/mp3" />
+    <source src="/gracias mama.mp3" type="audio/mp3" />
     Tu navegador no soporta audio HTML5.
   </audio>
 
-  <div id="formulario-modal" class="modal">
-    <div class="modal-contenido">
-      <span class="cerrar" onclick="cerrarFormulario()">&times;</span>
-      <h2>Dedícale un mensaje a mamá</h2>
-      <form>
-        <label for="nombre">Tu nombre:</label>
-        <input type="text" id="nombre" name="nombre" required>
-
-        <label for="mensaje">Mensaje:</label>
-        <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
-
-        <button type="submit">Enviar dedicatoria</button>
-      </form>
-    </div>
-  </div>
-
   <header>
     <div class="logo">
-      <img src="/img/lau.jpg" alt="Logo Mamá" />
-      <p>Feliz <span class="distinto">Día Mamá Laura</span></p>
+      <img src="/img/maa.jpg" alt="Logo Mamá" />
+      <p>Feliz <span class="distinto">Día Mamá Giovanita</span></p>
     </div>
   </header>
 
@@ -272,18 +214,26 @@
     <section class="sec1">
       <div class="frase">
         <h1>“Gracias por tu amor infinito, mamá”</h1>
-        <p>Hoy celebramos a la mujer que nos dio la vida, que nos enseñó con amor y paciencia, que ha sido nuestro refugio en los días grises y nuestra alegría en los días felices.<br><br>¡Gracias, mamá! 💖 Eres mi inspiración, mi fuerza y mi hogar.</p>
+        <p>Hoy celebramos a la mujer que nos dio la vida, "Mamá, no importa cuántos años pasen, siempre serás mi primera maestra, mi confidente, y la persona que más admiro en este mundo. Gracias por todo lo que me has enseñado, no solo con tus palabras, sino con tu ejemplo de vida. Cada sacrificio que hiciste por mí, cada sonrisa que compartiste, cada vez que me levantaste cuando caí, todo eso ha dejado una huella imborrable en mi corazón. Siempre estaré agradecida por tu amor, 
+          porque me has enseñado que el amor verdadero no tiene límites."
+          <br><br>¡Gracias, mamá! 💖 
+          Eres mi inspiración, mi fuerza y mi hogar.</p>
       </div>
-      <img src="/img/malaura.jpg" alt="Foto con Mamá" />
+      <img src="/img/maa-giovanna.jpg" alt="Foto con Mamá" />
       <div class="btn-carrito">
-        <button onclick="abrirFormulario()">Dedicar con amor 💌</button>
+        <button onclick="mostrarFrase()">Dedicar con amor 💌</button>
+      </div>
+      <div class="frase-emocionante" id="frase-emocionante">
+        Mamá, tus abrazos curan, tu voz tranquiliza, tu sonrisa ilumina mi vida. <br>
+        No hay palabras suficientes para agradecerte todo lo que eres. <br>
+        ¡Eres mi mayor regalo, mi ejemplo eterno y el amor más puro que existe! 💖
       </div>
     </section>
 
     <section class="video-section">
       <h2>Un video para ti, mamá</h2>
       <video controls>
-        <source src="/mama.mp4" type="video/mp4" />
+        <source src="/video a ma.mp4" type="video/mp4" />
         Tu navegador no soporta video HTML5.
       </video>
     </section>
@@ -292,7 +242,7 @@
       <div class="card">Tu risa</div>
       <div class="card">Tus abrazos</div>
       <div class="card">Tus consejos</div>
-      <div class="card">Tus comidas</div>
+      <div class="card">Tus rabietas</div>
       <div class="card">Tu amor</div>
     </section>
   </main>
@@ -302,19 +252,9 @@
   </footer>
 
   <script>
-    function abrirFormulario() {
-      document.getElementById("formulario-modal").style.display = "block";
-    }
-
-    function cerrarFormulario() {
-      document.getElementById("formulario-modal").style.display = "none";
-    }
-
-    window.onclick = function(event) {
-      const modal = document.getElementById("formulario-modal");
-      if (event.target === modal) {
-        modal.style.display = "none";
-      }
+    function mostrarFrase() {
+      const frase = document.getElementById("frase-emocionante");
+      frase.style.display = "block";
     }
 
     setInterval(() => {
