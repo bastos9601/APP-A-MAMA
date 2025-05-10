@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Feliz Día Mamá</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #ffe6e9, #fff5f8);
+      color: #444;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: linear-gradient(90deg, #f06292, #ec407a);
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .logo img {
+      width: 80px;
+      border-radius: 50%;
+      margin-bottom: 0.5rem;
+      transition: transform 0.5s ease;
+      cursor: pointer;
+      border: 3px solid white;
+    }
+
+    .logo img.grande {
+      transform: scale(1.8);
+    }
+
+    .logo p {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .distinto {
+      color: #ffebee;
+      font-style: italic;
+    }
+
+    .main {
+      max-width: 900px;
+      margin: auto;
+      padding: 2rem;
+      background-color: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      margin-top: -2rem;
+      z-index: 1;
+      position: relative;
+    }
+
+    .main h1 {
+      font-size: 2.2rem;
+      color: #d6336c;
+    }
+
+    .main p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .main img {
+      margin-top: 2rem;
+      max-width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .btn-carrito button {
+      margin-top: 2rem;
+      background-color: #ec407a;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-carrito button:hover {
+      background-color: #d81b60;
+    }
+
+    .video-section {
+      margin-top: 3rem;
+      text-align: center;
+    }
+
+    .video-section h2 {
+      font-size: 1.5rem;
+      color: #d6336c;
+    }
+
+    video {
+      width: 100%;
+      max-width: 600px;
+      border-radius: 15px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+
+    .sec2 {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin-top: 3rem;
+    }
+
+    .card {
+      background-color: #fce4ec;
+      padding: 1rem;
+      border-radius: 12px;
+      width: 160px;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #ad1457;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    footer {
+      background-color: #ec407a;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 3rem;
+    }
+
+    /* Modal estilo */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    .modal-contenido {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 2rem;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+
+    .modal-contenido h2 {
+      color: #d6336c;
+    }
+
+    .modal-contenido input,
+    .modal-contenido textarea {
+      width: 100%;
+      padding: 0.6rem;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .modal-contenido button {
+      background-color: #ec407a;
+      color: white;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 30px;
+      cursor: pointer;
+      width: 100%;
+      font-weight: bold;
+    }
+
+    .cerrar {
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      color: #888;
+      cursor: pointer;
+    }
+
+    .cerrar:hover {
+      color: black;
+    }
+
+    audio {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      z-index: 999;
+    }
+
+    .corazon {
+      position: fixed;
+      top: -50px;
+      font-size: 30px;
+      color: #ff69b4;
+      animation: caer 6s linear infinite;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    @keyframes caer {
+      0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+
+    @media (max-width: 768px) {
+      .main {
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+
+      .main h1 {
+        font-size: 1.5rem;
+      }
+
+      .card {
+        width: 100%;
+        max-width: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <audio autoplay loop controls>
+    <source src="/comotepago.mp3" type="audio/mp3" />
+    Tu navegador no soporta audio HTML5.
+  </audio>
+
+  <div id="formulario-modal" class="modal">
+    <div class="modal-contenido">
+      <span class="cerrar" onclick="cerrarFormulario()">&times;</span>
+      <h2>Dedícale un mensaje a mamá</h2>
+      <form>
+        <label for="nombre">Tu nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="mensaje">Mensaje:</label>
+        <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+
+        <button type="submit">Enviar dedicatoria</button>
+      </form>
+    </div>
+  </div>
+
+  <header>
+    <div class="logo">
+      <img src="/img/lau.jpg" alt="Logo Mamá" />
+      <p>Feliz <span class="distinto">Día Mamá Laura</span></p>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="sec1">
+      <div class="frase">
+        <h1>“Gracias por tu amor infinito, mamá”</h1>
+        <p>Hoy celebramos a la mujer que nos dio la vida, que nos enseñó con amor y paciencia, que ha sido nuestro refugio en los días grises y nuestra alegría en los días felices.<br><br>¡Gracias, mamá! 💖 Eres mi inspiración, mi fuerza y mi hogar.</p>
+      </div>
+      <img src="/img/malaura.jpg" alt="Foto con Mamá" />
+      <div class="btn-carrito">
+        <button onclick="abrirFormulario()">Dedicar con amor 💌</button>
+      </div>
+    </section>
+
+    <section class="video-section">
+      <h2>Un video para ti, mamá</h2>
+      <video controls>
+        <source src="/mama.mp4" type="video/mp4" />
+        Tu navegador no soporta video HTML5.
+      </video>
+    </section>
+
+    <section class="sec2">
+      <div class="card">Tu risa</div>
+      <div class="card">Tus abrazos</div>
+      <div class="card">Tus consejos</div>
+      <div class="card">Tus comidas</div>
+      <div class="card">Tu amor</div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Con todo mi amor para ti, mamá. 💐</p>
+  </footer>
+
+  <script>
+    function abrirFormulario() {
+      document.getElementById("formulario-modal").style.display = "block";
+    }
+
+    function cerrarFormulario() {
+      document.getElementById("formulario-modal").style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById("formulario-modal");
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    }
+
+    setInterval(() => {
+      const corazon = document.createElement("div");
+      corazon.classList.add("corazon");
+      corazon.style.left = Math.random() * window.innerWidth + "px";
+      corazon.innerHTML = "🌸";
+      document.body.appendChild(corazon);
+      setTimeout(() => {
+        corazon.remove();
+      }, 6000);
+    }, 400);
+
+    document.querySelector('.logo img').addEventListener('click', function () {
+      this.classList.toggle('grande');
+    });
+  </script>
+</body>
+</html>
