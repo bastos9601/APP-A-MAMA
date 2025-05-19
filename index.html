@@ -198,7 +198,7 @@
 </head>
 <body>
 
-  <audio autoplay loop controls>
+  <audio loop controls>
     <source src="/perfecto.mp3" type="audio/mp3" />
     Tu navegador no soporta audio HTML5.
   </audio>
@@ -253,6 +253,33 @@
     <p>&copy; 2025 Con todo mi amor para ti, Soraya 💖 — Tu persona especial</p>
   </footer>
 
+  <!-- Botón para reproducir música al cargar -->
+  <div id="musicPrompt" style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 240, 245, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  ">
+    <button onclick="iniciarMusica()" style="
+      background-color: #ec407a;
+      color: white;
+      font-size: 1.2rem;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    ">
+      🎵 PRECIONE AQUI 🎵
+    </button>
+  </div>
+
   <script>
     function mostrarFrase() {
       const frase = document.getElementById("frase-emocionante");
@@ -273,6 +300,13 @@
     document.querySelector('.logo img').addEventListener('click', function () {
       this.classList.toggle('grande');
     });
+
+    const audio = document.querySelector("audio");
+
+    function iniciarMusica() {
+      audio.play();
+      document.getElementById("musicPrompt").style.display = "none";
+    }
   </script>
 </body>
 </html>
